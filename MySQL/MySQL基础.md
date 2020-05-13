@@ -1,32 +1,53 @@
 # MySQL 基础
 
-## 关系型数据库
+## SQL 的概念
 
-关系型数据库是建立在关系模型上的。关系模型本质上就是若干个存储数据的二维表。
+SQL(Structured Query Language) 结构化查询语言
 
-表的每一行称为记录（Record），记录是一个逻辑意义上的数据。
+SQL 是所有关系型数据库的查询规范，不同的数据库 SQL 语句有一些区别
 
-表的每一列称为字段（Column），同一个表的每一行记录都拥有相同的若干字段。
+SQL 语句分类:
 
-在关系型数据库中，关系是通过主键和外键来维护的。
+1. Data Definition Language (DDL 数据定义语言) 如：建库，建表
+2. Data Manipulation Language(DML 数据操纵语言)，如：对表中的记录操作增删改
+3. Data Query Language(DQL 数据查询语言)，如：对表中的查询操作
+4. Data Control Language(DCL 数据控制语言)，如：对用户权限的设置
 
-### 主键
+## DDL 操作数据库、表
 
-关系表中能够通过某个字段唯一区分出不同的记录，这个字段被称为主键。
+常用的操作：CRUD
 
-选取主键的一个基本原则是：不使用任何业务相关的字段作为主键。
+- Create 创建
+- Retrieve 查询
+- Update 修改
+- Delete 删除
 
-我们一般把主键命名为 id 。常见的可作为 id 字段的类型有：
+### 操作数据库
 
-+ 自增整数类型
-  + `INT NOT NULL AUTO_INCREMENT`
-  + 数据库会在插入数据时自动为每一条记录分配一个自增整数
-+ 全局唯一GUID类型
-  + 使用一种全局唯一的字符串作为主键
+#### 创建数据库
 
-### 外键
+- 创建数据库: `CREATE DATABASE 数据库名;`
 
-把数据与另一张表关联起来的列称为外键。
+- 判断数据库是否存在，不存才创建：`CREATE DATABASE IF NOT EXISTS 数据库名;`
 
-### 索引
+- 创建数据库并指定字符集：`CREATE DATABASE 数据库名 CHARACTER SET 字符集;`
 
+#### 查询数据库
+
+- 查看数据库：`SHOW DATABASES;`
+
+- 查看某个数据库的定义信息：`SHOW CREATE DATABASE 数据库名;`
+
+#### 修改数据库
+
+- 修改数据库默认字符集：`ALTER DATABASE 数据库名 DEFAULT CHARACTER SET 字符集;`
+
+#### 删除数据库
+
+- 删除数据库：`DROP DATABASE 数据库名;`
+
+#### 使用数据库
+
+- 使用数据库：`USE 数据库名;`
+
+- 查看正在使用的数据库: `SELECT DATABASE();`
