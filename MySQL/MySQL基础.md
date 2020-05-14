@@ -50,21 +50,23 @@ SQL 语句分类:
 
 - 查看正在使用的数据库: `SELECT DATABASE();`
 
+### 查看表
+
+- 查看表：`SHOW TABLES;`
+
+- 查看表结构：`DESC my_table;`
+
 ### 创建表
 
 - 创建表：
 
 ```SQL
 CREATE TABLE my_table (
-  # 不为空，自增
   id INT NOT NULL AUTO_INCREMENT,
-  # 不为空，默认值为 1
-  col1 INT NOT NULL DEFAULT 1,
-  # 变长字符串类型，最长为 45 个字符，可以为空
-  col2 VARCHAR(45) NULL,
-  # 日期类型，可为空
-  col3 DATE NULL,
-  # 设置主键为 id
+  age INT NOT NULL DEFAULT 10,
+  nick VARCHAR(45) NULL,
+  score DOUBLE(5, 2),
+  create_at DATE NULL,
   PRIMARY KEY (`id`));
 ```
 
@@ -128,9 +130,9 @@ CREATE TABLE my_table (
 
 使用 `Like` 来进行通配符匹配，通配符只能用于文本字段
 
-`%`  ：匹配任意字符
+`%` ：匹配任意字符
 
-`_`  ：匹配 1 个任意字符
+`_` ：匹配 1 个任意字符
 
 `[ ]` ：匹配集合内的字符， `^` 可以对其进行否定，也就是不匹配集合内的字符
 
@@ -146,7 +148,7 @@ CREATE TABLE my_table (
 
 `LIMIT`：每页查询的数量；`OFFSET`：查询起始位置
 
-查询起始位置 = 每页查询数量 * (当前页数 - 1)
+查询起始位置 = 每页查询数量 \* (当前页数 - 1)
 
 - 分页查询：`SELECT * FROM my_table LIMIT 10 OFFSET 0;`
 
@@ -215,7 +217,7 @@ WHERE col =2;
 可以加上 `WHERE` 、`ORDER BY` 等子句
 
 ```SQL
-SELECT A.value, B.value 
+SELECT A.value, B.value
 FROM table_a AS A INNER JOIN table_b AS B
 ON A.key = B.key;
 ```
