@@ -199,7 +199,7 @@ CREATE TABLE STUDENTS (
 
 - 逻辑运算符
 
- `OR`、`AND` 、`NOT`
+`OR`、`AND` 、`NOT`
 
 - IN 关键字
 
@@ -399,3 +399,39 @@ FROM students s
 FULL OUTER JOIN classes c
 ON s.class_id = c.id;
 ```
+
+## 数据表的约束
+
+### 约束的概述
+
+### 约束的作用
+
+对表中的数据进行限制，保证数据的正确性、有效性和完整性
+
+一个表如果添加了约束，不正确的数据将无法插入到表中
+
+约束一般在创建表的时候添加
+
+### 约束的种类
+
+- PRIMARY KEY：主键
+- NOT NULL：非空
+- UNIQUE: 唯一
+- FOREIGN KEY: 外键
+
+## 主键约束
+
+主键约束用来唯一标识数据库中的每一条记录
+
+通常不用业务字段作为主键，单独给每张表设计一个 id 的字段，把 id 作为主键。
+
+在创建表时添加主键：`CREATE TABLE 表名 (字段名 字段类型 PRIMARY KEY);`
+
+在已有表中添加主键：`ALTER TABLE 表名 ADD PRIMARY KEY(字段名);`
+
+删除主键：`ALTER TABLE 表名 DROP PRIMARY KEY(字段名);`
+
+主键自增：`CREATE TABLE 表名(字段名 字段类型 PRIMARY KEY AUTO_INCREMENT);`
+
+设置主键自增起始值：`CREATE TABLE 表名(字段名 字段类型 PRIMARY KEY AUTO_INCREMENT) AUTO_INCREMENT=起始值;`
+
