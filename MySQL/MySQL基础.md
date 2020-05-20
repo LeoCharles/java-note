@@ -175,19 +175,35 @@ CREATE TABLE STUDENTS (
 
 ## DQL 查询表中的数据
 
+```SQL
+SELECT 字段名 FROM 表名
+WHERE 条件列表
+GROUP BY 分组字段
+HAVING 分组后过滤
+ORDER BY 排序
+LIMIT 分页
+```
+
 ### 基本查询
 
 - 基本查询： `SELECT * FROM 表名;`
 
 - 查询指定列：`SELECT 字段1, 字段2, 字段3, ... FROM 表名;`
 
-- 指定列的别名进行查询：`SELECT 字段1 AS 别名1, 字段2 AS 别名2, ... FROM 表名;`
+- 指定列的别名进行查询：`SELECT 字段1 AS 别名1, 字段2 AS 别名2, ... FROM 表名;` AS 可以省略
 
 - 指定表别名：`SELECT 字段1 AS 别名1, 字段2 AS 别名2, ... FROM 表名 AS 表别名;`
 
 - 去除重复值：`SELECT DISTINCT 字段名 FROM 表名;`
 
 - 查询结果参与运算：`SELECT 字段1 + 固定值 FROM 表名;`
+
+- 判断是否为NULL：`SELECT 字段1 + IFNULL(字段2, 0) FROM 表名;`
+
+```SQL
+-- 计算总成绩
+SELECT name, math, english, IFNULL(math,0) + IFNULL(english, 0) AS sum FROM students;
+```
 
 ### 条件查询
 
@@ -209,6 +225,12 @@ CREATE TABLE STUDENTS (
 
 `SELECT 字段名 FROM 表名 WHERE 字段 BETWEEN 值1 AND 值2;`：在一个范围之内匹配，头和尾都包含
 
+- 判断为空或不为空
+
+`SELECT 字段名 FROM 表名 WHERE 字段 IS NULL;`
+
+`SELECT 字段名 FROM 表名 WHERE 字段 IS NOT NULL;`
+
 - 模糊查询
 
 `SELECT * FROM 表名 WHERE 字段名 LIKE '通配符字符串';`：模糊查询，通配符只能用于文本字段
@@ -222,6 +244,8 @@ SELECT * FROM STUDENTS WHERE age != 20;
 
 -- 查询 age 大于 35 且性别为男的学生
 SELECT * FROM students WHERE age > 35 AND sex = '男';
+-- 查询 math 不为 NULL
+SELECT * FROM students WHERE english IS NOT NULL;
 
 -- 查询 id 是 1 或 3 或 5 的学生
 SELECT * FROM students WHERE id IN(1, 3, 5);
@@ -256,7 +280,9 @@ SELECT * FROM students ORDER BY age DESC, math ASC;
 
 ### 聚合函数
 
-聚合函数进行查询，可以快速获得结果
+聚合函数将一列数据作为一个整体进行纵向的计算。
+
+聚合函数会排除 NULL 值， 可以使用 `IFNULL()` 函数设置一个默认值在计算
 
 - `COUNT(字段名)`：统计数量
 
@@ -267,8 +293,6 @@ SELECT * FROM students ORDER BY age DESC, math ASC;
 - `MAX(字段名)`：最大值
 
 - `MIN(字段名)`：最小值
-
-对于 NULL 的记录不会统计， `IFNULL()` 函数设置一个默认值，再统计
 
 ```SQL
 -- 查询学生总数
@@ -283,7 +307,11 @@ SELECT MAX(math) FROM students;
 
 ### 分组
 
-`SELECT 字段名 FROM 表名 GROUP BY 分组字段 [HAVING 条件];`：将查询结果按照指定的字段进行分组，并且返回每组的第一条数据，单独使用分组没有用，一般配合聚合函数一起使用
+`SELECT 分组字段 FROM 表名 GROUP BY 分组字段 [HAVING 条件];`
+
+将查询结果按照指定的字段进行分组，并且返回每组的第一条数据
+
+单独使用分组没有用，一般配合聚合函数一起使用
 
 `HAVING` 和 `WHERE` 的区别:
 
@@ -294,32 +322,32 @@ SELECT MAX(math) FROM students;
 执行顺序: `WHERE` -> `GROUP BY` -> `HAVING` -> `ORDER BY` -> `LIMIT`
 
 ```SQL
--- 将所有学生按照性别分组，并分别统计人数
-SELECT sex, COUNT(*) AS total FROM students GROUP BY sex;
-
--- 将所有学生，按照性别分组，分别计算各组的数学平均分
+-- 按性别分组，并分别统计数学平均分
 SELECT sex, AVG(math) AS math_avg FROM students GROUP BY sex;
 
+-- 按性别分组, 低于70分不参与分组，再统计数学平均分
+SELECT sex, AVG(math) math_avg FROM students WHERE math > 70 GROUP BY sex;
+
 -- 查询年龄大于 16 的学生，按地址分组，计算每组学生的数学平均分，筛选平均分大于 60 的分组，按平均分降序排序
-SELECT address, AVG(math) AS math_avg FROM students
+SELECT address, AVG(math) math_avg FROM students
 WHERE age > 16
 GROUP BY address
 HAVING math_avg > 60
 ORDER BY math_avg DESC;
 
 -- 查询年龄大于 18 的学生，按性别分组，计算各组的人数，筛选人数大于 2 的分组，按升序排序
-SELECT sex, COUNT(*) AS total FROM students
+SELECT sex, COUNT(id) total FROM students
 WHERE age > 18
 GROUP BY sex
-HAVING COUNT(*) > 2
+HAVING COUNT(id) > 2
 ORDER BY total ASC;
 ```
 
 ### 分页查询
 
-`SELECT * FROM 表名 LIMIT 每页数量 OFFSET 查询起始位置;`：分页查询，查询起始位置 = 每页查询数量 * (当前页数 - 1)
+`SELECT * FROM 表名 LIMIT 每页条数 OFFSET 起始位置;`：分页查询，起始位置 = (当前页数 - 1) * 每页条数
 
-OFFSET 可以省略，简写为 `LIMIT 查询起始位置, 每页数量;`
+OFFSET 可以省略，简写为 `LIMIT 查询起始位置, 每页条数;`
 
 ```SQL
 -- 查询所有学生，从第 3 条开始查询，每页 5 条数据
