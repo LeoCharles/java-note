@@ -438,32 +438,10 @@ ON s.class_id = c.id;
 
 约束的种类：
 
-- PRIMARY KEY：主键
-- NOT NULL：非空
-- UNIQUE: 唯一
-- FOREIGN KEY: 外键
-
-### 主键约束（PRIMARY KEY）
-
-主键约束用来唯一标识数据库中的每一条记录
-
-通常不用业务字段作为主键，单独给每张表设计一个 id 的字段，把 id 作为主键。
-
-在创建表时添加主键：`CREATE TABLE 表名 (字段名 字段类型 PRIMARY KEY);`
-
-在已有表中添加主键：`ALTER TABLE 表名 ADD PRIMARY KEY(字段名);`
-
-删除主键：`ALTER TABLE 表名 DROP PRIMARY KEY(字段名);`
-
-主键自增：`CREATE TABLE 表名(字段名 字段类型 PRIMARY KEY AUTO_INCREMENT);`
-
-设置主键自增起始值：`CREATE TABLE 表名(字段名 字段类型 PRIMARY KEY AUTO_INCREMENT) AUTO_INCREMENT=起始值;`
-
-### 唯一约束（UNIQUE）
-
-表中某一列不能出现重复的值
-
-在创建表时设置唯一：`CREATE TABLE 表名 (字段名 字段类型  UNIQUE);`
+- `PRIMARY KEY`：主键
+- `NOT NULL`：非空
+- `UNIQUE`: 唯一
+- `FOREIGN KEY`: 外键
 
 ### 非空约束（NOT NULL）
 
@@ -473,20 +451,50 @@ ON s.class_id = c.id;
 
 在创建表时设置默认值：`CREATE TABLE 表名 (字段名 字段类型  DEFAULT 默认值);`
 
+### 唯一约束（UNIQUE）
+
+表中某一列不能出现重复的值
+
+在创建表时设置唯一：`CREATE TABLE 表名 (字段名 字段类型  UNIQUE);`
+
+### 主键约束（PRIMARY KEY）
+
+主键是表中记录的唯一标识，一张表只能由一个主键，非空且唯一
+
+通常不用业务字段作为主键，单独给每张表设计一个 id 的字段，把 id 作为主键。
+
+在创建表时添加主键：`CREATE TABLE 表名 (id INT PRIMARY KEY);`
+
+在已有表中添加主键：`ALTER TABLE 表名 MODIFY id INT PRIMARY KEY;`
+
+删除主键：`ALTER TABLE 表名 DROP PRIMARY KEY;`
+
+主键自增：`CREATE TABLE 表名(id INT PRIMARY KEY AUTO_INCREMENT);`
+
 ### 外键约束（FOREIGN KEY）
 
-在从表中与主表主键对应的那一列
+让表与表产生关联，保证数据的正确性
 
-新建表时增加外键：`[CONSTRAINT] [外键约束名称] FOREIGN KEY(外键字段名) REFERENCES 主表名(主键字段名);`
+```SQL
+CREATE TABLE 表名(
+  字段名
+  CONSTRAINT 外键名称
+  FOREIGN KEY (外键列名称)
+  REFERENCES 关联表名(关联表列名称)
+);
+```
 
-已有表增加外键：`ALTER TABLE 从表 ADD [CONSTRAINT] [外键约束名称] FOREIGN KEY (外键字段名) REFERENCES 主表(主键字段名);`
+新建表时增加外键：`CONSTRAINT 外键名称 FOREIGN KEY(外键字段名) REFERENCES 关联表名(关联表列名称);`
+
+已有表增加外键：`ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REFERENCES 关联表名(关联表列名称);`
 
 删除外键：`ALTER TABLE 从表 DROP FOREIGN KEY 外键名称;`
 
 在修改和删除主表的主键时，同时更新或删除副表的外键值，称为级联操作
 
-- `ON UPDATE CASCADE`：联级更新
-- `ON DELETE CASCADE`：联级删除
+- 联级更新：`ON UPDATE CASCADE`
+
+- 联级删除：`ON DELETE CASCADE`
 
 ## 数据库设计
 
