@@ -143,3 +143,90 @@ try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PAS
 }
 ```
 
+### 删除数据
+
+删除操作是 `DELETE`，可以一次删除若干列。
+
+```java
+try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+  try (PreparedStatement ps = conn.prepareStatement("DELETE FROM students WHERE id=?")) {
+    ps.setObject(1, 9);
+    int n = ps.executeUpdate(); // 删除的行数
+  }
+}
+```
+
+## JDBC 事务
+
+数据库事务特性：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）
+
+要在 JDBC 中执行事务，本质上就是如何把多条SQL包裹在一个数据库事务中执行。
+
+```java
+Connection conn = openConnection();
+try {
+  // 关闭自动提交:
+  conn.setAutoCommit(false);
+  // 执行多条SQL语句:
+  insert();
+  update();
+  delete();
+  // 提交事务:
+  conn.commit();
+} catch (SQLException e) {
+  // 回滚事务:
+  conn.rollback();
+} finally {
+  conn.setAutoCommit(true);
+  conn.close();
+}
+```
+
+## JDBC Batch
+
+SQL语句相同，只有参数不同的若干语句可以进行批量执行，这种操作速度快于循环执行每个SQL。
+
+在 JDBC 代码中，可以把同一个 SQL 但参数不同的若干次操作合并为一个 batch 执行。
+
+```java
+try (PreparedStatement ps = conn.prepareStatement("INSERT INTO students (name, gender, grade, score) VALUES (?, ?, ?, ?)")) {
+  // 对同一个PreparedStatement反复设置参数并调用 addBatch():
+  for (String name : names) {
+    ps.setString(1, name);
+    ps.setBoolean(2, gender);
+    ps.setInt(3, grade);
+    ps.setInt(4, score);
+    ps.addBatch(); // 添加到batch
+  }
+  // 执行 batch:
+  int[] ns = ps.executeBatch();
+  for (int n : ns) {
+    System.out.println(n + " inserted."); // batch中每个SQL执行的结果数量
+  }
+}
+```
+
+## JDBC 连接池
+
+JDBC连接池有一个标准的接口 `javax.sql.DataSource`，注意这个类位于Java标准库中，但仅仅是接口。
+
+要使用 JDBC 连接池，必须选择一个 JDBC 连接池的实现。常用的 JDBC 连接池有：
+
++ HikariCP
++ C3P0
++ BoneCP
++ Druid
+
+```java
+// 使用 HikariCP 连接池
+HikariConfig config = new HikariConfig();
+config.setJdbcUrl("jdbc:mysql://localhost:3306/test");
+config.setUsername("root");
+config.setPassword("password");
+config.addDataSourceProperty("connectionTimeout", "1000"); // 连接超时：1秒
+config.addDataSourceProperty("idleTimeout", "60000"); // 空闲超时：60秒
+config.addDataSourceProperty("maximumPoolSize", "10"); // 最大连接数：10
+DataSource ds = new HikariDataSource(config);
+```
+
+有了连接池以后，把 `DriverManage.getConnection()` 改为 `ds.getConnection()`
