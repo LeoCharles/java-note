@@ -110,7 +110,7 @@ CREATE TABLE 表名 (
 字段名 2 字段类型 2
 );
 
-CREATE TABLE STUDENTS (
+CREATE TABLE student (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(20),
   age INT,
@@ -202,7 +202,7 @@ LIMIT 分页
 
 ```SQL
 -- 计算总成绩
-SELECT name, math, english, IFNULL(math,0) + IFNULL(english, 0) AS sum FROM students;
+SELECT name, math, english, IFNULL(math,0) + IFNULL(english, 0) AS sum FROM student;
 ```
 
 ### 条件查询
@@ -239,27 +239,27 @@ SELECT name, math, english, IFNULL(math,0) + IFNULL(english, 0) AS sum FROM stud
 
 ```SQL
 -- 查询 age 不等于 20 岁的学生，注：不等于有两种写法
-SELECT * FROM STUDENTS WHERE age <> 20;
-SELECT * FROM STUDENTS WHERE age != 20;
+SELECT * FROM student WHERE age <> 20;
+SELECT * FROM student WHERE age != 20;
 
 -- 查询 age 大于 35 且性别为男的学生
-SELECT * FROM students WHERE age > 35 AND sex = '男';
+SELECT * FROM student WHERE age > 35 AND sex = '男';
 -- 查询 math 不为 NULL
-SELECT * FROM students WHERE english IS NOT NULL;
+SELECT * FROM student WHERE english IS NOT NULL;
 
 -- 查询 id 是 1 或 3 或 5 的学生
-SELECT * FROM students WHERE id IN(1, 3, 5);
+SELECT * FROM student WHERE id IN(1, 3, 5);
 -- 查询 id 不是 1 或 3 或 5 的学生
-SELECT * FROM students WHERE id NOT IN(1, 3, 5);
+SELECT * FROM student WHERE id NOT IN(1, 3, 5);
 
 -- 查询 english 成绩大于等于 75，且小于等于 90 的学生
-SELECT * FROM students WHERE english BETWEEN 75 AND 90;
+SELECT * FROM student WHERE english BETWEEN 75 AND 90;
 
 -- 查询姓刘的学生
-SELECT * FROM students WHERE name LIKE '刘%';
+SELECT * FROM student WHERE name LIKE '刘%';
 
 -- 查询姓刘，且姓名有两个字的学生
-SELECT * FROM students WHERE name LIKE '刘_';
+SELECT * FROM student WHERE name LIKE '刘_';
 ```
 
 ### 排序
@@ -272,10 +272,10 @@ SELECT * FROM students WHERE name LIKE '刘_';
 
 ```SQL
 -- 查询所有学生，年龄降序排序
-SELECT * FROM students ORDER BY age DESC;
+SELECT * FROM student ORDER BY age DESC;
 
 -- 查询所有学生，在年龄降序排序的基础上，再以数学成绩升序排序
-SELECT * FROM students ORDER BY age DESC, math ASC;
+SELECT * FROM student ORDER BY age DESC, math ASC;
 ```
 
 ### 聚合函数
@@ -296,13 +296,13 @@ SELECT * FROM students ORDER BY age DESC, math ASC;
 
 ```SQL
 -- 查询学生总数
-SELECT COUNT(*) AS total FROM students;
+SELECT COUNT(*) AS total FROM student;
 
 -- 统计 id 字段，如果为 null，则使用 0 代替
-SELECT COUNT(IFNULL(id, 0)) AS total FROM students;
+SELECT COUNT(IFNULL(id, 0)) AS total FROM student;
 
 -- 查询数学成绩最高分
-SELECT MAX(math) FROM students;
+SELECT MAX(math) FROM student;
 ```
 
 ### 分组
@@ -323,20 +323,20 @@ SELECT MAX(math) FROM students;
 
 ```SQL
 -- 按性别分组，并分别统计数学平均分
-SELECT sex, AVG(math) AS math_avg FROM students GROUP BY sex;
+SELECT sex, AVG(math) AS math_avg FROM student GROUP BY sex;
 
 -- 按性别分组, 低于70分不参与分组，再统计数学平均分
-SELECT sex, AVG(math) math_avg FROM students WHERE math > 70 GROUP BY sex;
+SELECT sex, AVG(math) math_avg FROM student WHERE math > 70 GROUP BY sex;
 
 -- 查询年龄大于 16 的学生，按地址分组，计算每组学生的数学平均分，筛选平均分大于 60 的分组，按平均分降序排序
-SELECT address, AVG(math) math_avg FROM students
+SELECT address, AVG(math) math_avg FROM student
 WHERE age > 16
 GROUP BY address
 HAVING math_avg > 60
 ORDER BY math_avg DESC;
 
 -- 查询年龄大于 18 的学生，按性别分组，计算各组的人数，筛选人数大于 2 的分组，按升序排序
-SELECT sex, COUNT(id) total FROM students
+SELECT sex, COUNT(id) total FROM student
 WHERE age > 18
 GROUP BY sex
 HAVING COUNT(id) > 2
@@ -351,81 +351,7 @@ OFFSET 可以省略，简写为 `LIMIT 查询起始位置, 每页条数;`
 
 ```SQL
 -- 查询所有学生，从第 3 条开始查询，每页 5 条数据
-SELECT * FROM students LIMIT 3, 5;
-```
-
-### 组合查询
-
-使用 `UNION` 关键字来组合两个查询
-
-默认会去除相同行，如果需要保留相同行，使用 `UNION ALL`
-
-只能包含一个 `ORDER BY` 子句，并且必须位于语句的最后
-
-```SQL
-SELECT col
-FROM my_table
-WHERE col = 1
-UNION
-SELECT col
-FROM my_table
-WHERE col =2;
-```
-
-### 多表查询
-
-- 多表查询：`SELECT * FROM table1, table2;`
-
-结果集的列数是表 1 和表 2 的列数之和，行数是表 1 和表 2 的行数之积
-
-### 连接查询
-
-用于连接多个表，使用 `JOIN` 关键字，条件语句使用 `ON` 而不是 `WHERE`
-
-#### 内连接
-
-先确定主表 `FROM table_a`
-
-再确定需要连接的表 `INNER JOIN table_b`
-
-然后确定连接条件 `ON A.key = B.key`,
-
-可以加上 `WHERE` 、`ORDER BY` 等子句
-
-```SQL
-SELECT A.value, B.value
-FROM table_a AS A INNER JOIN table_b AS B
-ON A.key = B.key;
-```
-
-#### 外连接
-
-外连接分为左外连接，右外连接以及全外连接，外连接保留了没有连接的那些行
-
-`LEFT OUTER JOIN`：左外连接，筛选出左表都存在的记录
-
-`RIGHT OUTER JOIN`：右外连接，筛选出右表都存在的记录
-
-`FULL OUTER JOIN`：全外连接，筛选出左右表都存在的记录
-
-```SQL
-# 左外连接
-SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
-FROM students s
-LEFT OUTER JOIN classes c
-ON s.class_id = c.id;
-
-# 右外连接
-SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
-FROM students s
-RIGHT OUTER JOIN classes c
-ON s.class_id = c.id;
-
-# 全外连接
-SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
-FROM students s
-FULL OUTER JOIN classes c
-ON s.class_id = c.id;
+SELECT * FROM student LIMIT 3, 5;
 ```
 
 ## 数据表的约束
@@ -522,26 +448,99 @@ CREATE TABLE 表名(
 
 目前关系数据库有六种范式：
 
-- `1NF`：第一范式
-- `2NF`：第二范式
-- `3NF`：第三范式
+- `1NF`：每一列都是不可再拆分的原子数据项（原子性）
+
+- `2NF`：在 1NF 的基础上，表中的每一个字段都完全依赖于主键
+
+- `3NF`：在 1NF 的基础上，不产生传递依赖，表中每一列都直接依赖于主键，而不是通过其它列间接依赖于主键
+
 - `BCNF`：巴斯-科德范式
+
 - `4NF`：第四范式
+
 - `5NF`：第五范式
 
-#### 1NF
+## 多表查询
 
-原子性：表中每列不可再拆分
+`SELECT * FROM table1, table2;`：结果集的列数是两表列数之和，行数是两表的行数之积，这种多表查询又称笛卡尔查询
 
-#### 2NF
+多表查询需要删除多余的无用数据
 
-表中的每一个字段都完全依赖于主键
+### 连接查询
 
-一张表只描述一件事情
+用于连接多个表，使用 `JOIN` 关键字，条件语句使用 `ON` 而不是 `WHERE`
 
-#### 3NF
+#### 内连接
 
-不产生传递依赖，表中每一列都直接依赖于主键。而不是通过其它列间接依赖于主键
+- 隐式内连接：使用 `WHERE` 条件语句消除无用数据
+
+```SQL
+SELECT * FROM student,class WHERE student.c_id = class.id;
+```
+
+- 显示内连接
+
+先确定主表 `FROM table_a`
+
+再确定需要连接的表 `INNER JOIN table_b`
+
+然后确定连接条件 `ON A.key = B.key`,
+
+可以加上 `WHERE` 、`ORDER BY` 等子句
+
+```SQL
+SELECT A.value, B.value
+FROM table_a AS A INNER JOIN table_b AS B
+ON A.key = B.key;
+```
+
+#### 外连接
+
+外连接分为左外连接，右外连接以及全外连接，外连接保留了没有连接的那些行
+
+`LEFT OUTER JOIN`：左外连接，筛选出左表都存在的记录
+
+`RIGHT OUTER JOIN`：右外连接，筛选出右表都存在的记录
+
+`FULL OUTER JOIN`：全外连接，筛选出左右表都存在的记录
+
+```SQL
+# 左外连接
+SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+FROM student s
+LEFT OUTER JOIN classes c
+ON s.class_id = c.id;
+
+# 右外连接
+SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+FROM student s
+RIGHT OUTER JOIN classes c
+ON s.class_id = c.id;
+
+# 全外连接
+SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+FROM student s
+FULL OUTER JOIN classes c
+ON s.class_id = c.id;
+```
+
+### 组合查询
+
+使用 `UNION` 关键字来组合两个查询
+
+默认会去除相同行，如果需要保留相同行，使用 `UNION ALL`
+
+只能包含一个 `ORDER BY` 子句，并且必须位于语句的最后
+
+```SQL
+SELECT col
+FROM my_table
+WHERE col = 1
+UNION
+SELECT col
+FROM my_table
+WHERE col =2;
+```
 
 ## 事务
 
