@@ -472,57 +472,63 @@ CREATE TABLE 表名(
 
 #### 内连接
 
-- 隐式内连接：使用 `WHERE` 条件语句消除无用数据
+内连接查询的是两个表交集的部分
+
+- 隐式内连接：使用 `WHERE` 条件语句查询
 
 ```SQL
 SELECT * FROM student,class WHERE student.c_id = class.id;
 ```
 
-- 显示内连接
+- 显示内连接：使用 `INNER JOIN ... ON` 语法连接表
 
-先确定主表 `FROM table_a`
+语法：`SELECT 字段名 FROM 左表 [INNER] JOIN 右表 ON 条件`，INNER 可以省略
 
-再确定需要连接的表 `INNER JOIN table_b`
+内连接查询步骤：
 
-然后确定连接条件 `ON A.key = B.key`,
-
-可以加上 `WHERE` 、`ORDER BY` 等子句
+1. 确定主表 `FROM 左表`
+2. 确定需要连接的表 `INNER JOIN 右表`
+3. 然后确定连接条件 `ON 查询条件`,
+4. 可以加上 `WHERE` 、`ORDER BY` 等子句
 
 ```SQL
-SELECT A.value, B.value
-FROM table_a AS A INNER JOIN table_b AS B
-ON A.key = B.key;
+SELECT * FROM student INNER JOIN class on student.c_id = class.id;
 ```
 
 #### 外连接
 
-外连接分为左外连接，右外连接以及全外连接，外连接保留了没有连接的那些行
+语法：`SELECT 字段名 FROM 左表 LEFT [OUTER] JOIN 右表 ON 条件`，OUTER 可以省略
 
-`LEFT OUTER JOIN`：左外连接，筛选出左表都存在的记录
+外连接分为左外连接，右外连接以及全外连接
 
-`RIGHT OUTER JOIN`：右外连接，筛选出右表都存在的记录
+`LEFT OUTER JOIN`：左外连接，查询的是全部左表的记录，包含了两表交集的部分
 
-`FULL OUTER JOIN`：全外连接，筛选出左右表都存在的记录
+`RIGHT OUTER JOIN`：右外连接，查询的是全部右表的记录，包含了两表交集的部分
+
+`FULL OUTER JOIN`：全外连接，查询的是两表表都存在的记录
 
 ```SQL
 # 左外连接
-SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+SELECT *
 FROM student s
-LEFT OUTER JOIN classes c
-ON s.class_id = c.id;
+LEFT OUTER JOIN class c
+ON s.c_id = c.id;
 
 # 右外连接
-SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+SELECT *
 FROM student s
-RIGHT OUTER JOIN classes c
-ON s.class_id = c.id;
+RIGHT OUTER JOIN class c
+ON s.c_id = c.id;
 
 # 全外连接
-SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+SELECT *
 FROM student s
-FULL OUTER JOIN classes c
-ON s.class_id = c.id;
+FULL OUTER JOIN class c
+ON s.c_id = c.id;
 ```
+
+### 子查询
+
 
 ### 组合查询
 
@@ -539,7 +545,7 @@ WHERE col = 1
 UNION
 SELECT col
 FROM my_table
-WHERE col =2;
+WHERE col = 2;
 ```
 
 ## 事务
