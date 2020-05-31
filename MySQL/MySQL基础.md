@@ -354,6 +354,24 @@ OFFSET 可以省略，简写为 `LIMIT 查询起始位置, 每页条数;`
 SELECT * FROM student LIMIT 3, 5;
 ```
 
+### 组合查询
+
+使用 `UNION` 关键字来组合两个查询
+
+默认会去除相同行，如果需要保留相同行，使用 `UNION ALL`
+
+只能包含一个 `ORDER BY` 子句，并且必须位于语句的最后
+
+```SQL
+SELECT col
+FROM my_table
+WHERE col = 1
+UNION
+SELECT col
+FROM my_table
+WHERE col = 2;
+```
+
 ## 数据表的约束
 
 约束是对表中的数据进行限制，保证数据的正确性、有效性和完整性
@@ -529,51 +547,57 @@ ON s.c_id = c.id;
 
 ### 子查询
 
+查询中嵌套查询，嵌套的查询称为子查询
 
-### 组合查询
+- 子查询的结果是单行单列
+  - 子查询可以作为条件，可以使用运算符
 
-使用 `UNION` 关键字来组合两个查询
+- 子查询的结果是多行单列
+  - 子查询可以作为条件，使用运算符 in 来判断
 
-默认会去除相同行，如果需要保留相同行，使用 `UNION ALL`
-
-只能包含一个 `ORDER BY` 子句，并且必须位于语句的最后
+- 子查询的结果是多行多列
+  - 子查询可以作为一张虚拟表参与查询
 
 ```SQL
-SELECT col
-FROM my_table
-WHERE col = 1
-UNION
-SELECT col
-FROM my_table
-WHERE col = 2;
+-- 子查询结果是单行单列
+SELECT * FROM emp WHERE emp.`salary` = (SELECT MAX(salary) FROM emp);
+
+-- 子查询结果是单行多列
+SELECT * FROM emp WHERE dept_id IN (SELECT id FROM dept name = '财务部' OR name = '市场部');
+
+-- 子查询结果是多行多列
+SELECT * FROM dept t1, (SELECT * FROM emp WHERE emp.`join_date` > '2020-5-29') t2
+WHERE t1.id = t2.dept_id;
 ```
 
 ## 事务
 
-把多条语句作为一个整体进行操作的功能，被称为数据库事务
+把多条语句作为一个整体进行操作，这些操作要么同时成功要么同时失败，这种操作称为数据库事务
 
-数据库事务可以确保该事务范围内的所有操作都可以全部成功或者全部失败
+操作：
 
-数据库事务具有4个特性：
+- 开启事务：`START TRANSACTION`或`BEGIN`
+- 回滚：`ROLLBACK`
+- 提交：`COMMIT`
 
-- `Atomic`：原子性，将所有 SQL 作为原子工作单元执行，要么全部执行，要么全部不执行
-- `Consistent`：一致性，事务完成后，所有数据的状态都是一致的
-- `Isolation`：隔离性，如果有多个事务并发执行，每个事务作出的修改必须与其他事务隔离
-- `Duration`：持久性，即事务完成后，对数据库数据的修改被持久化存储
+对于一条 DML(增、删、改) 语句，MySQL 默认自动提交事务，Oracle 数据库默认手动提交事务
 
-事务的类型：
-
-- 隐式事务：对于单条 SQL 语句，数据库系统自动将其作为一个事务执行，被称为隐式事务
-
-- 显式事务：把多条 SQL 语句作为一个事务执行，使用 `BEGIN` 开启一个事务，使用 `COMMIT` 提交一个事务，这种事务被称为显式事务，可以用 `ROLLBACK` 回滚事务，主动让整个事务失败
+手动提交事务：使用 `BEGIN` 开启一个事务，使用 `COMMIT` 提交一个事务，可以用 `ROLLBACK` 回滚事务，主动让整个事务失败
 
 ```SQL
 -- 账户1 减少100，账户2增加 100
 BEGIN;
 UPDATE accounts SET balance = balance - 100 WHERE id = 1;
 UPDATE accounts SET balance = balance + 100 WHERE id = 2;
-ROLLBACK;
+COMMIT;
 ```
+
+### 事务的特征
+
+- `Atomic`：原子性，不可分割的最小操作单位，要么同时成功，要么同时失败
+- `Duration`：持久性，当事务提交或回滚后，数据库会持久化的保存数据
+- `Isolation`：隔离性，多个事务之间相互独立
+- `Consistent`：一致性，事务操作前后，数据总量不变
 
 ### 隔离级别
 
@@ -583,28 +607,26 @@ ROLLBACK;
 
 数据不一致性：
 
-- `Dirt Read`：脏读
-- `Non Repeatable Read`：不可重复读
-- `Phantom Read`：幻读
+- `Dirt Read`：脏读，一个事务读取到另一个事务中没有提交的数据
+- `Non Repeatable Read`：不可重复读（虚读），在同一个事务中，两次读到的数据不一样
+- `Phantom Read`：幻读，一个事务操作（DML）数据表中所有的记录，另一个事务添加了一条数据，则第一事务查询不到自己的的修改
 
-#### Read Uncommitted
+隔离级别：
 
-`Read Uncommitted` 是隔离级别最低的一种事务级别。
+- `Read Uncommitted` 读未提交
 
-在这种隔离级别下，一个事务会读到另一个事务更新后但未提交的数据，如果另一个事务回滚，那么当前事务读到的数据就是脏数据，这就是脏读。
+隔离级别最低的一种事务级别。脏读、不可重复读、幻读都可能发生
 
-#### Read Committed
+- `Read Committed` 读已提交（Oracle默认）
 
-在 `Read Committed` 隔离级别下，一个事务可能会遇到不可重复读的问题。
+这个隔离级别可能产生不可重复读、幻读
 
-不可重复读是指，在一个事务内，多次读同一数据，在这个事务还没有结束时，如果另一个事务恰好修改了这个数据，那么，在第一个事务中，两次读取的数据就可能不一致。
+- `Repeatable Read` 可重复读（MySQL默认）
 
-#### Repeatable Read
+这个隔离级别下，可能会产生幻读
 
-在 `Repeatable Read` 隔离级别下，一个事务可能会遇到幻读的问题。
+- `Serializable` 串行化
 
-幻读是指，在一个事务中，第一次查询某条记录，发现没有，但是，当试图更新这条不存在的记录时，竟然能成功，并且，再次读取同一条记录，它就神奇地出现了。
+最严格的隔离级别，所有事务按照次序依次执行，脏读、不可重复读、幻读都不会出现，但会降低性能
 
-#### Serializable
-
-`Serializable` 是最严格的隔离级别。在 `Serializable` 隔离级别下，所有事务按照次序依次执行，因此，脏读、不可重复读、幻读都不会出现。但会降低性能。
+隔离级别从小到大安全性越来越高，但是效率越来越低
