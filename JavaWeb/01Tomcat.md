@@ -4,7 +4,7 @@
 
 ## Tomcat 安装与启动
 
-1. 下载：http://tomcat.apache.org/
+1. 下载：<http://tomcat.apache.org/>
 
 2. 安装：解压压缩包即可
 
