@@ -278,6 +278,44 @@
 
 ---
 
+## 🔗 推荐学习项目
+
+> 本笔记 Spring 篇的案例主要参考 [xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)（每个特性一个独立 demo 模块，好上手）。以下项目可作为补充学习资源。
+
+### 综合实战型（推荐）
+
+| 项目 | 说明 |
+| :--- | :--- |
+| [macrozheng/mall](https://github.com/macrozheng/mall) | 最火的 Spring Boot 电商项目（50k+ star）。完整商城系统，含 Spring Boot + Spring Cloud + MyBatis + Redis + RabbitMQ + ES + Docker，企业级架构集大成者 |
+| [macrozheng/mall-learning](https://github.com/macrozheng/mall-learning) | mall 的配套学习版，拆解 mall 各模块的实现原理，适合跟着学 |
+| [macrozheng/springboot-learning-example](https://github.com/macrozheng/springboot-learning-example) | macrozheng 的 Spring Boot 基础示例集，和 spring-boot-demo 定位类似 |
+
+### 示例集型（和 spring-boot-demo 类似）
+
+| 项目 | 说明 |
+| :--- | :--- |
+| [ityouknow/spring-boot-examples](https://github.com/ityouknow/spring-boot-examples) | Spring Boot 各特性独立示例，每个 example 一个知识点，风格接近 spring-boot-demo |
+| [elunez/springboot-example](https://github.com/elunez/springboot-example) | Spring Boot + MyBatis + Shiro 实战示例 |
+| [wuyouzhuguli/SpringAll](https://github.com/wuyouzhuguli/SpringAll) | Spring 全家桶教程，从 Spring 到 Spring Boot 到 Spring Cloud |
+
+### 源码与原理型
+
+| 项目 | 说明 |
+| :--- | :--- |
+| [doocs/source-code-hunter](https://github.com/doocs/source-code-hunter) | Java 主流框架源码分析，含 Spring/Spring Boot/MyBatis，适合"知其所以然" |
+| [farmer-hutao/spring-boot-starter-kit](https://github.com/farmer-hutao/spring-boot-starter-kit) | Spring Boot 进阶，讲 Starter 自动配置原理 |
+
+### 最佳实践型
+
+| 项目 | 说明 |
+| :--- | :--- |
+| [javastacks/spring-boot-best-practice](https://github.com/javastacks/spring-boot-best-practice) | Spring Boot 最佳实践 |
+| [dunwu/spring-boot-tutorial](https://github.com/dunwu/spring-boot-tutorial) | Spring Boot 教程，含工程化实践 |
+
+> **使用建议**：继续以本笔记为主线系统学习，学完路线图后用 [macrozheng/mall-learning](https://github.com/macrozheng/mall-learning) 做一个完整项目实战，把所有知识点串起来；[ityouknow/spring-boot-examples](https://github.com/ityouknow/spring-boot-examples) 作为查漏补缺的对照参考。先 demo 后 mall 是合理路径。
+
+---
+
 ## 📝 维护信息
 
 - 仓库：[github.com/LeoCharles/java-note](https://github.com/LeoCharles/java-note)
