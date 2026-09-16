@@ -3,7 +3,7 @@
 > 📅 创建时间：2026-09  
 > 🎯 目标读者：有前端开发基础，希望快速掌握 PostgreSQL 数据库的工程师  
 > 📌 文档定位：数据库基础 + SQL 语法速查 + Spring Boot 集成实战 + 性能排查  
-> 📌 配套文档：[Spring Boot 快速上手文档](../Spring/Spring%20Boot%20快速上手文档.md)
+> 📌 配套文档：[Spring Boot 快速上手文档](../Spring基础/Spring%20Boot%20快速上手文档.md)
 
 ---
 

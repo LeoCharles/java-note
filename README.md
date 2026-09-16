@@ -5,12 +5,13 @@
 
 ## 📌 项目介绍
 
-这套笔记的核心设计理念是：**JavaWeb 学的是"底层原理"，Spring 学的是"工程效率"**。
+这套笔记的核心设计理念是：**Java打基础，JavaWeb学底层原理，Spring基础学发动机原理，Spring实战学开车**。
 
 - **Java基础**：49 篇，打牢语言根基（OOP、集合、IO、并发、反射、JVM）
 - **JavaWeb**：21 篇，理解原生 Servlet/JSP/JDBC 原理——它们是 Spring Boot 的底层实现
 - **数据库**：3 篇，MySQL/PostgreSQL/JDBC，数据持久化基础
-- **Spring**：54 篇 + 3 篇参考，Spring Boot 企业级开发全套实战
+- **Spring基础**：18 篇 + 3 篇参考，Spring Framework 核心原理（IoC/DI/AOP/事务/MVC）
+- **Spring实战**：54 篇，Spring Boot 企业级开发全套实战
 - **思维导图**：6 大领域的知识体系总览
 
 每个知识点都遵循统一结构：**概念 → 语法 → 代码 → ⚠️重点 → 💻实战 → 🚀新版本 → 📌在 Spring Boot 中 → 本章小结**。JavaWeb 每篇文末标注"在 Spring Boot 中对应什么"，让你学底层原理时始终知道将来被什么封装了。
@@ -114,134 +115,163 @@
 | [JDBC](数据库/JDBC.md) | 六步流程、PreparedStatement、事务 | JdbcTemplate、@Transactional |
 | [PostgreSQL学习文档](数据库/PostgreSQL学习文档.md) | PostgreSQL 语法、Spring Boot 集成 | spring.datasource 配置 |
 
-### 四、Spring Boot（54 篇 + 3 篇参考）
+### 四、Spring 基础（18 篇 + 3 篇参考）
 
-> 入口：[Spring/00-学习路线图.md](Spring/00-学习路线图.md)
+> 入口：[Spring基础/00-学习路线图.md](Spring基础/00-学习路线图.md)
+> 定位：**面向 Spring Framework 核心原理**。学完能理解 IoC 容器、DI 注入、Bean 生命周期、AOP 切面、事务管理、Spring MVC 等核心机制——这些是 Spring Boot 自动配置的底层基础。
+
+| 编号 | 文档 | 核心主题 |
+| :---: | :--- | :--- |
+| 00 | [学习路线图](Spring基础/00-学习路线图.md) | 总导航，六大阶段 |
+| 01 | [IoC 思想与原理解析](Spring基础/01-IoC%20思想与原理解析.md) ⭐ | 控制反转思想、手写 MiniIoCContainer |
+| 02 | [Spring 容器与 Bean 注册](Spring基础/02-Spring%20容器与%20Bean%20注册.md) ⭐ | BeanFactory/ApplicationContext、三种注册方式 |
+| 03 | [Bean 作用域与生命周期](Spring基础/03-Bean%20作用域与生命周期.md) ⭐ | 五种作用域、完整生命周期、BeanPostProcessor |
+| 04 | [条件装配与 Profile](Spring基础/04-条件装配与%20Profile.md) | @Profile、@Conditional、自动配置原理 |
+| 05 | [依赖注入方式详解](Spring基础/05-依赖注入方式详解.md) ⭐ | 构造器/Setter/字段注入、@RequiredArgsConstructor |
+| 06 | [@Autowired 与自动装配](Spring基础/06-@Autowired%20与自动装配.md) ⭐ | byType→byName、@Qualifier/@Primary、策略模式注入 |
+| 07 | [循环依赖与三级缓存](Spring基础/07-循环依赖与三级缓存.md) ⭐⭐ | 三级缓存流程、为什么是三级非两级、@Lazy |
+| 08 | [AOP 概念与代理机制](Spring基础/08-AOP%20概念与代理机制.md) ⭐ | JDK vs CGLIB 代理、内部调用失效、final 陷阱 |
+| 09 | [通知类型与切点表达式](Spring基础/09-通知类型与切点表达式.md) ⭐ | 五种通知、execution/@annotation、@Pointcut |
+| 10 | [AOP 实战：日志、权限与缓存](Spring基础/10-AOP%20实战：日志、权限与缓存.md) ⭐ | 三个生产级切面完整实现 |
+| 11 | [声明式事务 @Transactional](Spring基础/11-声明式事务%20@Transactional.md) ⭐ | AOP 原理、回滚规则、6 大失效场景 |
+| 12 | [事务传播与隔离级别](Spring基础/12-事务传播与隔离级别.md) ⭐⭐ | REQUIRED vs REQUIRES_NEW、脏读/幻读 |
+| 13 | [Spring MVC 架构与请求流程](Spring基础/13-Spring%20MVC%20架构与请求流程.md) ⭐ | DispatcherServlet 完整链路、迷你版手写 |
+| 14 | [请求映射与参数绑定](Spring基础/14-请求映射与参数绑定.md) ⭐ | 6 种参数注解、@Valid 校验、统一返回 |
+| 15 | [拦截器与统一异常处理](Spring基础/15-拦截器与统一异常处理.md) ⭐ | HandlerInterceptor vs Filter、@ControllerAdvice |
+| 16 | [Spring 整合 MyBatis](Spring基础/16-Spring%20整合%20MyBatis.md) ⭐ | SqlSessionFactoryBean、MapperScanner、FactoryBean |
+| 17 | [Spring 中的设计模式](Spring基础/17-Spring%20中的设计模式.md) | 工厂/单例/代理/模板方法/观察者/策略等 8 种 |
+| 18 | [Spring 单元测试](Spring基础/18-Spring%20单元测试.md) | @Mock/@MockBean、MockMvc、测试分层 80/15/5 |
+
+#### 参考文档
+
+| 文档 | 用途 |
+| :--- | :--- |
+| [Spring Boot 快速上手文档](Spring基础/Spring%20Boot%20快速上手文档.md) | 速查向总览 |
+| [注解速查手册](Spring基础/注解速查手册.md) | 注解用法速查 |
+| [Maven 使用文档](Spring基础/Maven%20使用文档.md) | 依赖管理参考 |
+
+> 💡 **与 Spring实战 的关系**：Spring基础讲"发动机原理"（IoC 容器怎么工作、AOP 怎么代理、事务怎么管理），Spring实战讲"开车"（怎么用 Spring Boot 快速搭建企业级服务）。建议先学 Spring基础 理解核心机制，再学 Spring实战 掌握工程化开发。
+
+### 五、Spring Boot 实战（54 篇）
+
+> 入口：[Spring实战/00-学习路线图.md](Spring实战/00-学习路线图.md)
 > 定位：**面向企业级开发**。学完后能独立搭建带数据库、缓存、认证、消息队列、容器化部署的后端服务。
 
 #### 阶段一：工程入门与骨架
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 01 | [SpringBoot入门_HelloWorld](Spring/01-SpringBoot入门_HelloWorld.md) ⭐ | 项目创建、启动原理、内嵌 Tomcat |
-| 02 | [读取配置文件_Properties](Spring/02-读取配置文件_Properties.md) ⭐ | application.yml、@Value、profile |
-| 03 | [端点监控_Actuator](Spring/03-端点监控_Actuator.md) | 健康检查、指标暴露 |
-| 04 | [可视化管控_Admin](Spring/04-可视化管控_Admin.md) | Admin 面板、多实例监控 |
-| 05 | [日志集成_Logback](Spring/05-日志集成_Logback.md) ⭐ | Logback 配置、日志规范 |
-| 06 | [AOP请求日志_LogAop](Spring/06-AOP请求日志_LogAop.md) ⭐ | AOP 切面、@Around 日志 |
-| 07 | [统一异常处理_ExceptionHandler](Spring/07-统一异常处理_ExceptionHandler.md) ⭐ | @ControllerAdvice 全局异常 |
+| 01 | [SpringBoot入门_HelloWorld](Spring实战/01-SpringBoot入门_HelloWorld.md) ⭐ | 项目创建、启动原理、内嵌 Tomcat |
+| 02 | [读取配置文件_Properties](Spring实战/02-读取配置文件_Properties.md) ⭐ | application.yml、@Value、profile |
+| 03 | [端点监控_Actuator](Spring实战/03-端点监控_Actuator.md) | 健康检查、指标暴露 |
+| 04 | [可视化管控_Admin](Spring实战/04-可视化管控_Admin.md) | Admin 面板、多实例监控 |
+| 05 | [日志集成_Logback](Spring实战/05-日志集成_Logback.md) ⭐ | Logback 配置、日志规范 |
+| 06 | [AOP请求日志_LogAop](Spring实战/06-AOP请求日志_LogAop.md) ⭐ | AOP 切面、@Around 日志 |
+| 07 | [统一异常处理_ExceptionHandler](Spring实战/07-统一异常处理_ExceptionHandler.md) ⭐ | @ControllerAdvice 全局异常 |
 
 #### 阶段二：Web 接口与视图层
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 08 | [模板引擎_Freemarker](Spring/08-模板引擎_Freemarker.md) | FreeMarker 语法 |
-| 09 | [模板引擎_Thymeleaf](Spring/09-模板引擎_Thymeleaf.md) ⭐ | th:text/th:each、HTML 友好 |
-| 10 | [模板引擎_Beetl](Spring/10-模板引擎_Beetl.md) | Beetl 国产模板 |
-| 11 | [模板引擎_Enjoy](Spring/11-模板引擎_Enjoy.md) | Enjoy 极简模板 |
-| 12 | [文件上传_Upload](Spring/12-文件上传_Upload.md) ⭐ | MultipartFile、上传限制 |
+| 08 | [模板引擎_Freemarker](Spring实战/08-模板引擎_Freemarker.md) | FreeMarker 语法 |
+| 09 | [模板引擎_Thymeleaf](Spring实战/09-模板引擎_Thymeleaf.md) ⭐ | th:text/th:each、HTML 友好 |
+| 10 | [模板引擎_Beetl](Spring实战/10-模板引擎_Beetl.md) | Beetl 国产模板 |
+| 11 | [模板引擎_Enjoy](Spring实战/11-模板引擎_Enjoy.md) | Enjoy 极简模板 |
+| 12 | [文件上传_Upload](Spring实战/12-文件上传_Upload.md) ⭐ | MultipartFile、上传限制 |
 
 #### 阶段三：数据库访问层
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 13 | [数据库操作_JdbcTemplate](Spring/13-数据库操作_JdbcTemplate.md) ⭐ | JdbcTemplate、自动映射 |
-| 14 | [数据库操作_JPA](Spring/14-数据库操作_JPA.md) | Spring Data JPA、方法名查询 |
-| 15 | [数据库操作_MyBatis](Spring/15-数据库操作_MyBatis.md) ⭐ | @Mapper、XML 映射、resultMap |
-| 16 | [MyBatis通用Mapper与分页](Spring/16-MyBatis通用Mapper与分页.md) ⭐ | 通用 Mapper、PageHelper |
-| 17 | [数据库操作_MyBatisPlus](Spring/17-数据库操作_MyBatisPlus.md) ⭐ | BaseMapper 通用 CRUD |
-| 18 | [数据库操作_BeetlSQL](Spring/18-数据库操作_BeetlSQL.md) | BeetlSQL 国产 ORM |
+| 13 | [数据库操作_JdbcTemplate](Spring实战/13-数据库操作_JdbcTemplate.md) ⭐ | JdbcTemplate、自动映射 |
+| 14 | [数据库操作_JPA](Spring实战/14-数据库操作_JPA.md) | Spring Data JPA、方法名查询 |
+| 15 | [数据库操作_MyBatis](Spring实战/15-数据库操作_MyBatis.md) ⭐ | @Mapper、XML 映射、resultMap |
+| 16 | [MyBatis通用Mapper与分页](Spring实战/16-MyBatis通用Mapper与分页.md) ⭐ | 通用 Mapper、PageHelper |
+| 17 | [数据库操作_MyBatisPlus](Spring实战/17-数据库操作_MyBatisPlus.md) ⭐ | BaseMapper 通用 CRUD |
+| 18 | [数据库操作_BeetlSQL](Spring实战/18-数据库操作_BeetlSQL.md) | BeetlSQL 国产 ORM |
 
 #### 阶段四：缓存提升性能
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 19 | [Redis缓存_CacheRedis](Spring/19-Redis缓存_CacheRedis.md) ⭐ | @Cacheable、缓存三大问题 |
-| 20 | [Ehcache缓存_CacheEhcache](Spring/20-Ehcache缓存_CacheEhcache.md) | 本地堆内缓存、三级 |
+| 19 | [Redis缓存_CacheRedis](Spring实战/19-Redis缓存_CacheRedis.md) ⭐ | @Cacheable、缓存三大问题 |
+| 20 | [Ehcache缓存_CacheEhcache](Spring实战/20-Ehcache缓存_CacheEhcache.md) | 本地堆内缓存、三级 |
 
 #### 阶段五：通用后端能力
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 21 | [邮件服务_Email](Spring/21-邮件服务_Email.md) | JavaMailSender、模板邮件 |
-| 22 | [定时任务_Task](Spring/22-定时任务_Task.md) ⭐ | @Scheduled、cron 表达式 |
-| 23 | [定时任务_Quartz](Spring/23-定时任务_Quartz.md) | Quartz 调度、集群 |
-| 24 | [分布式定时任务_XXL-JOB](Spring/24-分布式定时任务_XXL-JOB.md) | 调度中心、分片广播 |
-| 25 | [API文档_Swagger](Spring/25-API文档_Swagger.md) ⭐ | SpringDoc、接口文档 |
-| 26 | [增强版API文档_SwaggerBeauty](Spring/26-增强版API文档_SwaggerBeauty.md) | Knife4j 增强 UI |
+| 21 | [邮件服务_Email](Spring实战/21-邮件服务_Email.md) | JavaMailSender、模板邮件 |
+| 22 | [定时任务_Task](Spring实战/22-定时任务_Task.md) ⭐ | @Scheduled、cron 表达式 |
+| 23 | [定时任务_Quartz](Spring实战/23-定时任务_Quartz.md) | Quartz 调度、集群 |
+| 24 | [分布式定时任务_XXL-JOB](Spring实战/24-分布式定时任务_XXL-JOB.md) | 调度中心、分片广播 |
+| 25 | [API文档_Swagger](Spring实战/25-API文档_Swagger.md) ⭐ | SpringDoc、接口文档 |
+| 26 | [增强版API文档_SwaggerBeauty](Spring实战/26-增强版API文档_SwaggerBeauty.md) | Knife4j 增强 UI |
 
 #### 阶段六：安全与认证
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 27 | [权限控制_RBAC_Security](Spring/27-权限控制_RBAC_Security.md) ⭐ | Spring Security、RBAC、JWT |
-| 28 | [统一Session管理_Session](Spring/28-统一Session管理_Session.md) ⭐ | Spring Session、Redis 共享 |
-| 29 | [第三方登录_Social](Spring/29-第三方登录_Social.md) | OAuth2、社交登录 |
+| 27 | [权限控制_RBAC_Security](Spring实战/27-权限控制_RBAC_Security.md) ⭐ | Spring Security、RBAC、JWT |
+| 28 | [统一Session管理_Session](Spring实战/28-统一Session管理_Session.md) ⭐ | Spring Session、Redis 共享 |
+| 29 | [第三方登录_Social](Spring实战/29-第三方登录_Social.md) | OAuth2、社交登录 |
 
 #### 阶段七：分布式与消息中间件
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 30 | [分布式锁_Zookeeper](Spring/30-分布式锁_Zookeeper.md) | ZK 锁、临时顺序节点 |
-| 31 | [消息中间件_RabbitMQ](Spring/31-消息中间件_RabbitMQ.md) ⭐ | Exchange/Queue、可靠投递 |
-| 32 | [消息中间件_Kafka](Spring/32-消息中间件_Kafka.md) | Topic/Partition、高吞吐 |
+| 30 | [分布式锁_Zookeeper](Spring实战/30-分布式锁_Zookeeper.md) | ZK 锁、临时顺序节点 |
+| 31 | [消息中间件_RabbitMQ](Spring实战/31-消息中间件_RabbitMQ.md) ⭐ | Exchange/Queue、可靠投递 |
+| 32 | [消息中间件_Kafka](Spring实战/32-消息中间件_Kafka.md) | Topic/Partition、高吞吐 |
 
 #### 阶段八：实时通信与报表
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 33 | [WebSocket实时通信](Spring/33-WebSocket实时通信.md) | Spring WebSocket、STOMP |
-| 34 | [SocketIO实时通信](Spring/34-SocketIO实时通信.md) | Socket.IO、房间机制 |
-| 35 | [报表引擎_UReport2](Spring/35-报表引擎_UReport2.md) | 报表设计、导出 |
+| 33 | [WebSocket实时通信](Spring实战/33-WebSocket实时通信.md) | Spring WebSocket、STOMP |
+| 34 | [SocketIO实时通信](Spring实战/34-SocketIO实时通信.md) | Socket.IO、房间机制 |
+| 35 | [报表引擎_UReport2](Spring实战/35-报表引擎_UReport2.md) | 报表设计、导出 |
 
 #### 阶段九：异步与微服务
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 36 | [异步调用_Async](Spring/36-异步调用_Async.md) ⭐ | @Async、ThreadPoolTaskExecutor |
-| 37 | [微服务RPC_Dubbo](Spring/37-微服务RPC_Dubbo.md) | Dubbo、Provider/Consumer |
-| 38 | [War包部署_War](Spring/38-War包部署_War.md) | 外部 Tomcat 部署 |
+| 36 | [异步调用_Async](Spring实战/36-异步调用_Async.md) ⭐ | @Async、ThreadPoolTaskExecutor |
+| 37 | [微服务RPC_Dubbo](Spring实战/37-微服务RPC_Dubbo.md) | Dubbo、Provider/Consumer |
+| 38 | [War包部署_War](Spring实战/38-War包部署_War.md) | 外部 Tomcat 部署 |
 
 #### 阶段十：搜索与 NoSQL
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 39 | [搜索引擎_ElasticSearch](Spring/39-搜索引擎_ElasticSearch.md) | 倒排索引、全文检索 |
-| 40 | [文档数据库_MongoDB](Spring/40-文档数据库_MongoDB.md) | 文档模型、Spring Data |
-| 41 | [图数据库_Neo4j](Spring/41-图数据库_Neo4j.md) | 图/节点/关系、Cypher |
+| 39 | [搜索引擎_ElasticSearch](Spring实战/39-搜索引擎_ElasticSearch.md) | 倒排索引、全文检索 |
+| 40 | [文档数据库_MongoDB](Spring实战/40-文档数据库_MongoDB.md) | 文档模型、Spring Data |
+| 41 | [图数据库_Neo4j](Spring实战/41-图数据库_Neo4j.md) | 图/节点/关系、Cypher |
 
 #### 阶段十一：容器化与多数据源
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 42 | [Docker容器化_Docker](Spring/42-Docker容器化_Docker.md) ⭐ | Dockerfile、镜像构建 |
-| 43 | [多数据源_JPA](Spring/43-多数据源_JPA.md) | JPA 多数据源、分包 |
-| 44 | [多数据源_MyBatis](Spring/44-多数据源_MyBatis.md) | MyBatis 多数据源 |
-| 45 | [分库分表_ShardingJDBC](Spring/45-分库分表_ShardingJDBC.md) | ShardingSphere、分片 |
+| 42 | [Docker容器化_Docker](Spring实战/42-Docker容器化_Docker.md) ⭐ | Dockerfile、镜像构建 |
+| 43 | [多数据源_JPA](Spring实战/43-多数据源_JPA.md) | JPA 多数据源、分包 |
+| 44 | [多数据源_MyBatis](Spring实战/44-多数据源_MyBatis.md) | MyBatis 多数据源 |
+| 45 | [分库分表_ShardingJDBC](Spring实战/45-分库分表_ShardingJDBC.md) | ShardingSphere、分片 |
 
 #### 阶段十二：工程化与运维
 
 | 编号 | 文档 | 核心主题 |
 | :---: | :--- | :--- |
-| 46 | [代码生成器_Codegen](Spring/46-代码生成器_Codegen.md) | 根据表生成代码 |
-| 47 | [日志管理_Graylog](Spring/47-日志管理_Graylog.md) | 日志集中收集 |
-| 48 | [目录服务_LDAP](Spring/48-目录服务_LDAP.md) | 企业目录、AD 集成 |
-| 49 | [动态数据源_DynamicDataSource](Spring/49-动态数据源_DynamicDataSource.md) | 运行时切换、@DS |
-| 50 | [单机限流_RateLimitGuava](Spring/50-单机限流_RateLimitGuava.md) | Guava 令牌桶 |
-| 51 | [分布式限流_RateLimitRedis](Spring/51-分布式限流_RateLimitRedis.md) | Redis+Lua 集群限流 |
-| 52 | [HTTPS配置_HTTPS](Spring/52-HTTPS配置_HTTPS.md) | 证书、HTTPS 启用 |
-| 53 | [ES高级客户端_RestHighLevelClient](Spring/53-ES高级客户端_RestHighLevelClient.md) | ES 复杂查询 |
-| 54 | [数据库版本控制_Flyway](Spring/54-数据库版本控制_Flyway.md) ⭐ | 数据库迁移、版本脚本 |
+| 46 | [代码生成器_Codegen](Spring实战/46-代码生成器_Codegen.md) | 根据表生成代码 |
+| 47 | [日志管理_Graylog](Spring实战/47-日志管理_Graylog.md) | 日志集中收集 |
+| 48 | [目录服务_LDAP](Spring实战/48-目录服务_LDAP.md) | 企业目录、AD 集成 |
+| 49 | [动态数据源_DynamicDataSource](Spring实战/49-动态数据源_DynamicDataSource.md) | 运行时切换、@DS |
+| 50 | [单机限流_RateLimitGuava](Spring实战/50-单机限流_RateLimitGuava.md) | Guava 令牌桶 |
+| 51 | [分布式限流_RateLimitRedis](Spring实战/51-分布式限流_RateLimitRedis.md) | Redis+Lua 集群限流 |
+| 52 | [HTTPS配置_HTTPS](Spring实战/52-HTTPS配置_HTTPS.md) | 证书、HTTPS 启用 |
+| 53 | [ES高级客户端_RestHighLevelClient](Spring实战/53-ES高级客户端_RestHighLevelClient.md) | ES 复杂查询 |
+| 54 | [数据库版本控制_Flyway](Spring实战/54-数据库版本控制_Flyway.md) ⭐ | 数据库迁移、版本脚本 |
 
-#### 参考文档
-
-| 文档 | 用途 |
-| :--- | :--- |
-| [Spring Boot 快速上手文档](Spring/Spring%20Boot%20快速上手文档.md) | 速查向总览 |
-| [注解速查手册](Spring/注解速查手册.md) | 注解用法速查 |
-| [Maven 使用文档](Spring/Maven%20使用文档.md) | 依赖管理参考 |
-
-### 五、思维导图
+### 六、思维导图
 
 > 6 大领域知识体系总览。
 
@@ -260,11 +290,12 @@
 
 推荐按以下顺序系统学习：
 
-1. **Java SE 基础**（[Java基础/00-学习路线图](Java基础/00-学习路线图.md)）—— 至少到集合、IO、异常、并发
+1. **Java SE 基础**（[Java基础/00-学习路线图](Java基础/00-学习路线图.md)）—— 至少到集合、IO、异常、并发、反射
 2. **JavaWeb 原理**（[JavaWeb/00-学习路线图](JavaWeb/00-学习路线图.md)）—— 理解 Servlet/JSP/JDBC 底层
-3. **Spring Boot 工程实践**（[Spring/00-学习路线图](Spring/00-学习路线图.md)）—— 企业级开发全套
+3. **Spring 基础**（[Spring基础/00-学习路线图](Spring基础/00-学习路线图.md)）—— 理解 IoC/DI/AOP/事务/MVC 核心机制
+4. **Spring Boot 实战**（[Spring实战/00-学习路线图](Spring实战/00-学习路线图.md)）—— 企业级开发全套
 
-> 一句话总结：**JavaWeb 学的是"底层原理"，Spring 学的是"工程效率"。** 原生 Servlet/JDBC 知道得越深，用 Spring Boot 时越知道它在帮你省什么、出了问题才知道往哪查。
+> 一句话总结：**Java基础 学语法，JavaWeb 学底层原理，Spring基础 学发动机原理，Spring实战 学开车。** 原生 Servlet/JDBC 知道得越深，IoC/AOP 机制理解得越透，用 Spring Boot 时越知道它在帮你省什么、出了问题才知道往哪查。
 
 ---
 

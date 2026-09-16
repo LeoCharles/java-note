@@ -327,7 +327,7 @@ public class UserApiServlet extends HttpServlet {
 
 - **HTTP/2**（2015）：多路复用、头部压缩、服务器推送，Tomcat 9+ 支持。
 - **HTTP/3**（2022）：基于 QUIC（UDP），更快建连，抗丢包。
-- **HTTPS**：HTTP + TLS 加密，现代网站标配，Spring Boot 可一键配 SSL（见 [52-HTTPS配置](../Spring/52-HTTPS配置_HTTPS.md)）。
+- **HTTPS**：HTTP + TLS 加密，现代网站标配，Spring Boot 可一键配 SSL（见 [52-HTTPS配置](../Spring实战/52-HTTPS配置_HTTPS.md)）。
 
 ---
 

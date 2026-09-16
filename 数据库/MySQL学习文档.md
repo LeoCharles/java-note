@@ -532,7 +532,7 @@ COMMIT;
 
 | 本篇概念 | Spring Boot 中的对应 |
 | :--- | :--- |
-| 建表/改表 | **Flyway/Liquibase** 数据库版本迁移（见 [54-数据库版本控制_Flyway](../Spring/54-数据库版本控制_Flyway.md)） |
+| 建表/改表 | **Flyway/Liquibase** 数据库版本迁移（见 [54-数据库版本控制_Flyway](../Spring实战/54-数据库版本控制_Flyway.md)） |
 | 增删改查 SQL | MyBatis-Plus 的 `BaseMapper` / JPA 的 `Repository` 自动生成 |
 | 分页 LIMIT | **PageHelper** 或 MyBatis-Plus 分页插件，传页码即可 |
 | 事务 | `@Transactional` 注解，底层就是 `BEGIN/COMMIT/ROLLBACK` |
