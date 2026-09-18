@@ -511,4 +511,4 @@ public class UserService {
 
 ## 本章小结
 
-本篇讲清了 Apache DBUtils：它用 `QueryRunner`（`query`/`update`/`insert`）+ `ResultSetHandler`（`BeanHandler`/`BeanListHandler`/`ScalarHandler`）简化 JDBC 样板——资源自动关、结果自动映射、参数自动设。重点掌握 `QueryRunner` 两种构造（传 DataSource 自动管连接 vs 不传手动管事务）、`BeanHandler` 要求列名=属性名、事务仍需手动管理、DBUtils 是 MyBatis 的前身。核心认知：**DBUtils → JdbcTemplate → MyBatis → MyBatis-Plus 是"简化样板"的进化链，Spring Boot 用 JdbcTemplate/MyBatis 接管**。至此阶段七完成，数据库与持久层（MySQL/JDBC/连接池/DBUtils）你已掌握。下一篇 [21-综合案例：学生管理系统](21-综合案例：学生管理系统.md) 用原生技术栈完成完整项目，把前七个阶段全部串起来。
+本篇讲清了 Apache DBUtils：它用 `QueryRunner`（`query`/`update`/`insert`）+ `ResultSetHandler`（`BeanHandler`/`BeanListHandler`/`ScalarHandler`）简化 JDBC 样板——资源自动关、结果自动映射、参数自动设。重点掌握 `QueryRunner` 两种构造（传 DataSource 自动管连接 vs 不传手动管事务）、`BeanHandler` 要求列名=属性名、事务仍需手动管理、DBUtils 是 MyBatis 的前身。核心认知：**DBUtils → JdbcTemplate → MyBatis → MyBatis-Plus 是"简化样板"的进化链，Spring Boot 用 JdbcTemplate/MyBatis 接管**。本篇讲清了 JDBC 样板代码的轻量级简化工具，下一篇 [19-JDBC事务管理](19-JDBC事务管理.md) 将深入 ACID 与隔离级别——事务是 DBUtils 没解决的核心问题。学完事务后再看 [20-通用分页封装](20-通用分页封装.md)，最后用 [21-综合案例：学生管理系统](21-综合案例：学生管理系统.md) 把前七个阶段全部串起来。
