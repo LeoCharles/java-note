@@ -9,7 +9,7 @@
 
 - **Java基础**：49 篇，打牢语言根基（OOP、集合、IO、并发、反射、JVM）
 - **JavaWeb**：21 篇，理解原生 Servlet/JSP/JDBC 原理——它们是 Spring Boot 的底层实现
-- **数据库**：3 篇，MySQL/PostgreSQL/JDBC，数据持久化基础
+- **数据库**：6 篇，MySQL/PostgreSQL/JDBC + Redis 缓存 + MyBatis 持久层 + Liquibase 版本控制，数据持久化基础
 - **Spring基础**：18 篇 + 3 篇参考，Spring Framework 核心原理（IoC/DI/AOP/事务/MVC）
 - **Spring实战**：54 篇，Spring Boot 企业级开发全套实战
 - **思维导图**：6 大领域的知识体系总览
@@ -105,15 +105,18 @@
 | 18 | [Apache DBUtils](JavaWeb/18-Apache%20DBUtils.md) | QueryRunner 简化 JDBC | JdbcTemplate/MyBatis |
 | 21 | [综合案例：学生管理系统](JavaWeb/21-综合案例：学生管理系统.md) | 原生技术栈串讲 | Spring Boot 痛点对照 |
 
-### 三、数据库（3 篇）
+### 三、数据库（6 篇）
 
-> 数据持久化基础，建议在 JavaWeb 阶段五后穿插学习。
+> 数据持久化基础，建议在 JavaWeb 阶段五后穿插学习。前三篇打 SQL 与 JDBC 底子，后三篇是实际开发中每天都在用的技术栈。
 
 | 文档 | 核心主题 | Spring Boot 对应 |
 | :--- | :--- | :--- |
 | [MySQL学习文档](数据库/MySQL学习文档.md) | SQL 增删改查、多表连接、事务索引 | spring.datasource、JPA/MyBatis |
 | [JDBC](数据库/JDBC.md) | 六步流程、PreparedStatement、事务 | JdbcTemplate、@Transactional |
 | [PostgreSQL学习文档](数据库/PostgreSQL学习文档.md) | PostgreSQL 语法、Spring Boot 集成 | spring.datasource 配置 |
+| [MyBatis学习文档](数据库/MyBatis学习文档.md) | MyBatis 原理、动态 SQL、MyBatis-Plus、分页、批量、性能优化 | mybatis-spring-boot-starter、mybatis-plus-spring-boot3-starter |
+| [Redis学习文档](数据库/Redis学习文档.md) | 九大数据类型、持久化、缓存三大问题、分布式锁、高可用 | spring-data-redis、Redisson、Spring Cache |
+| [Liquibase学习文档](数据库/Liquibase学习文档.md) | 数据库版本控制、changelog、回滚、多环境、生产安全流程 | liquibase-core、liquibase-maven-plugin |
 
 ### 四、Spring 基础（18 篇 + 3 篇参考）
 
