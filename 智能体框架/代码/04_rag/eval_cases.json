@@ -1,0 +1,157 @@
+[
+  {
+    "id": "hr_001",
+    "question": "入职满三年有几天年假？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["5"]
+  },
+  {
+    "id": "hr_002",
+    "question": "年假可以结转到下一年吗？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["结转", "5"]
+  },
+  {
+    "id": "hr_003",
+    "question": "病假超过一个月工资怎么发？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["60%"]
+  },
+  {
+    "id": "hr_004",
+    "question": "每月可以迟到几次？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["3"]
+  },
+  {
+    "id": "hr_005",
+    "question": "加班费怎么算？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["1.5", "2", "3"]
+  },
+  {
+    "id": "fin_001",
+    "question": "出差住酒店能报多少钱？",
+    "answerable": true,
+    "expected_sources": ["差旅报销制度"],
+    "expect_contains": ["400", "一线"]
+  },
+  {
+    "id": "fin_002",
+    "question": "出差后多久要提交报销？",
+    "answerable": true,
+    "expected_sources": ["差旅报销制度"],
+    "expect_contains": ["15"]
+  },
+  {
+    "id": "fin_003",
+    "question": "出差每天有餐补吗？",
+    "answerable": true,
+    "expected_sources": ["差旅报销制度"],
+    "expect_contains": ["100"]
+  },
+  {
+    "id": "fin_004",
+    "question": "机票能坐公务舱吗？",
+    "answerable": true,
+    "expected_sources": ["差旅报销制度"],
+    "expect_contains": ["P8", "公务舱"]
+  },
+  {
+    "id": "it_001",
+    "question": "VPN 连不上怎么办？",
+    "answerable": true,
+    "expected_sources": ["IT服务指南"],
+    "expect_contains": ["客户端版本", "443"]
+  },
+  {
+    "id": "it_002",
+    "question": "密码多久要改一次？",
+    "answerable": true,
+    "expected_sources": ["IT服务指南"],
+    "expect_contains": ["90"]
+  },
+  {
+    "id": "it_003",
+    "question": "新员工电脑什么配置？",
+    "answerable": true,
+    "expected_sources": ["IT服务指南"],
+    "expect_contains": ["16GB", "SSD"]
+  },
+  {
+    "id": "it_004",
+    "question": "能用个人网盘传公司文件吗？",
+    "answerable": true,
+    "expected_sources": ["IT服务指南"],
+    "expect_contains": ["禁止", "机密"]
+  },
+  {
+    "id": "it_005",
+    "question": "账号被锁了怎么办？",
+    "answerable": true,
+    "expected_sources": ["IT服务指南"],
+    "expect_contains": ["30", "IT"]
+  },
+  {
+    "id": "hr_006",
+    "question": "试用期有年假吗？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["不享受", "转正"]
+  },
+  {
+    "id": "hr_007",
+    "question": "一个月最多加班多少小时？",
+    "answerable": true,
+    "expected_sources": ["员工手册"],
+    "expect_contains": ["36"]
+  },
+
+  {
+    "id": "neg_001",
+    "question": "公司有食堂吗？",
+    "answerable": false,
+    "note": "文档里没提食堂"
+  },
+  {
+    "id": "neg_002",
+    "question": "公司的股票代码是多少？",
+    "answerable": false
+  },
+  {
+    "id": "neg_003",
+    "question": "年会在几月份举办？",
+    "answerable": false
+  },
+  {
+    "id": "neg_004",
+    "question": "我可以带宠物上班吗？",
+    "answerable": false
+  },
+  {
+    "id": "neg_005",
+    "question": "公司的 CEO 是谁？",
+    "answerable": false
+  },
+  {
+    "id": "neg_006",
+    "question": "婚假有多少天？",
+    "answerable": false,
+    "note": "文档只写了年假和病假，故意留的缺口"
+  },
+  {
+    "id": "neg_007",
+    "question": "公积金缴纳比例是多少？",
+    "answerable": false
+  },
+  {
+    "id": "neg_008",
+    "question": "停车场怎么申请？",
+    "answerable": false
+  }
+]

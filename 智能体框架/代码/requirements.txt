@@ -1,0 +1,23 @@
+# 核心
+langchain>=1.0
+langchain-core>=1.0
+langchain-openai>=1.0
+langgraph>=1.0
+langgraph-checkpoint>=3.0
+pydantic>=2.7
+
+# RAG
+langchain-text-splitters>=0.3
+langchain-community>=0.3
+langchain-huggingface>=0.1
+sentence-transformers>=3.0
+pypdf>=4.0
+psycopg[binary]>=3.1
+pgvector>=0.3
+
+# 服务
+fastapi>=0.110
+uvicorn[standard]>=0.29
+httpx>=0.27
+python-dotenv>=1.0
+tiktoken>=0.7
