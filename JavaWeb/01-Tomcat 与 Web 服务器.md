@@ -315,7 +315,7 @@ public class HelloServlet extends HttpServlet {
 }
 ```
 
-重启 Tomcat，访问 <http://localhost:8080/hello>，看到 "Hello, Servlet!"。这就是 Java Web 的起点——下一篇 [02-Servlet 入门](02Servlet.md) 会深入讲它的原理。
+重启 Tomcat，访问 <http://localhost:8080/hello>，看到 "Hello, Servlet!"。这就是 Java Web 的起点——下一篇 [02-Servlet 入门](02-Servlet%20入门.md) 会深入讲它的原理。
 
 ---
 
@@ -458,4 +458,4 @@ src/main/
 
 ## 本章小结
 
-本篇建立了 Java Web 开发的环境认知：B/S 架构下，浏览器发 HTTP 请求，Tomcat 作为 Servlet 容器接收并调用 Servlet 处理。重点掌握 Tomcat 的安装启动、目录结构（尤其 `webapps/` 和 `conf/`）、四种部署方式、IDEA 集成配置，以及 Web 项目的标准结构（`WEB-INF/` 的保护机制）。下一篇 [02-Servlet 入门](02Servlet.md) 将进入 Servlet 的核心原理——它是整个 Java Web 的基石，也是 Spring MVC 的底层。
+本篇建立了 Java Web 开发的环境认知：B/S 架构下，浏览器发 HTTP 请求，Tomcat 作为 Servlet 容器接收并调用 Servlet 处理。重点掌握 Tomcat 的安装启动、目录结构（尤其 `webapps/` 和 `conf/`）、四种部署方式、IDEA 集成配置，以及 Web 项目的标准结构（`WEB-INF/` 的保护机制）。下一篇 [02-Servlet 入门](02-Servlet%20入门.md) 将进入 Servlet 的核心原理——它是整个 Java Web 的基石，也是 Spring MVC 的底层。

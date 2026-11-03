@@ -328,7 +328,7 @@ public class ConstantPoolDemo {
 }
 ```
 
-> ⚠️ 字符串 `==` 比较的坑，根源就在常量池和堆的区别。详见 [18-字符串](18-字符串String与StringBuilder.md)。
+> ⚠️ 字符串 `==` 比较的坑，根源就在常量池和堆的区别。详见 [19-字符串](19-字符串String与StringBuilder.md)。
 
 ### 6.4 方法区溢出
 

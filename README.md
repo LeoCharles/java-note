@@ -7,7 +7,7 @@
 
 这套笔记的核心设计理念是：**Java打基础，JavaWeb学底层原理，Spring基础学发动机原理，Spring实战学开车**。
 
-- **Java基础**：49 篇，打牢语言根基（OOP、集合、IO、并发、反射、JVM）
+- **Java基础**：50 篇，打牢语言根基（OOP、集合、IO、并发、反射、JVM）
 - **JavaWeb**：21 篇，理解原生 Servlet/JSP/JDBC 原理——它们是 Spring Boot 的底层实现
 - **数据库**：6 篇，MySQL/PostgreSQL/JDBC + Redis 缓存 + MyBatis 持久层 + Liquibase 版本控制，数据持久化基础
 - **Spring基础**：18 篇 + 3 篇参考，Spring Framework 核心原理（IoC/DI/AOP/事务/MVC）
@@ -21,7 +21,7 @@
 
 ## 📚 文档索引
 
-### 一、Java 基础（49 篇）
+### 一、Java 基础（50 篇）
 
 > 入口：[Java基础/00-学习路线图.md](Java基础/00-学习路线图.md)
 
@@ -39,44 +39,45 @@
 | 09 | [类与对象：封装与构造方法](Java基础/09-类与对象：封装与构造方法.md) | OOP 入门、封装 |
 | 10 | [static关键字与代码块](Java基础/10-static关键字与代码块.md) | 静态成员、静态代码块 |
 | 11 | [继承与final](Java基础/11-继承与final.md) | 继承体系、final 修饰 |
-| 12 | [多态](Java基础/12-多态.md) | 向上/向下转型、动态绑定 |
-| 13 | [接口](Java基础/13-接口.md) | 接口定义、默认方法 |
-| 14 | [内部类](Java基础/14-内部类.md) | 成员/局部/匿名内部类 |
-| 15 | [权限修饰符与包](Java基础/15-权限修饰符与包.md) | public/protected/默认/private |
-| 16 | [枚举enum](Java基础/16-枚举enum.md) | 枚举定义与使用 |
-| 17 | [Object类与Objects](Java基础/17-Object类与Objects.md) | toString/equals/hashCode |
-| 18 | [字符串String与StringBuilder](Java基础/18-字符串String与StringBuilder.md) | 字符串不可变、拼接优化 |
-| 19 | [包装类](Java基础/19-包装类.md) | 自动装箱拆箱、缓存 |
-| 20 | [数学运算：Math与BigDecimal](Java基础/20-数学运算：Math与BigDecimal.md) | 精确运算 |
-| 21 | [日期时间](Java基础/21-日期时间.md) | Date/Calendar/新时间 API |
-| 22 | [System与Runtime类](Java基础/22-System与Runtime类.md) | 系统属性、运行时 |
-| 23 | [异常处理](Java基础/23-异常处理.md) | 受检/非受检异常、try-catch |
-| 24 | [集合框架体系与Collection](Java基础/24-集合框架体系与Collection.md) | Collection 体系总览 |
-| 25 | [List：ArrayList与LinkedList](Java基础/25-List：ArrayList与LinkedList.md) | List 实现、底层原理 |
-| 26 | [Set：HashSet与TreeSet](Java基础/26-Set：HashSet与TreeSet.md) | Set 实现与排序 |
-| 27 | [Map：HashMap底层与TreeMap](Java基础/27-Map：HashMap底层与TreeMap.md) | HashMap 原理、红黑树 |
-| 28 | [迭代器与增强for](Java基础/28-迭代器与增强for.md) | Iterator、fail-fast |
-| 29 | [泛型](Java基础/29-泛型.md) | 泛型方法、通配符 |
-| 30 | [Collections工具类与排序](Java基础/30-Collections工具类与排序.md) | 工具方法、Comparator |
-| 31 | [数据结构基础](Java基础/31-数据结构基础.md) | 链表/栈/队列/树 |
-| 32 | [File类与NIO.2](Java基础/32-File类与NIO.2.md) | 文件操作、Path |
-| 33 | [字节流与字符流](Java基础/33-字节流与字符流.md) | InputStream/Reader |
-| 34 | [缓冲流与转换流](Java基础/34-缓冲流与转换流.md) | BufferedReader/InputStreamReader |
-| 35 | [序列化与打印流](Java基础/35-序列化与打印流.md) | Serializable、PrintStream |
-| 36 | [标准IO、RandomAccessFile与Properties](Java基础/36-标准IO、RandomAccessFile与Properties.md) | 随机访问、配置文件 |
-| 37 | [线程基础](Java基础/37-线程基础.md) | Thread/Runnable、生命周期 |
-| 38 | [线程同步](Java基础/38-线程同步.md) | synchronized、锁 |
-| 39 | [线程通信](Java基础/39-线程通信.md) | wait/notify、生产消费 |
-| 40 | [JUC并发包](Java基础/40-JUC并发包.md) | CAS、AQS、ConcurrentHashMap |
-| 41 | [线程池](Java基础/41-线程池.md) | ThreadPoolExecutor、参数 |
-| 42 | [ThreadLocal与异步编程](Java基础/42-ThreadLocal与异步编程.md) | 线程隔离、CompletableFuture |
-| 43 | [网络编程](Java基础/43-网络编程.md) | Socket/TCP/UDP |
-| 44 | [反射](Java基础/44-反射.md) | Class、动态代理 |
-| 45 | [注解](Java基础/45-注解.md) | 元注解、自定义注解 |
-| 46 | [函数式编程](Java基础/46-函数式编程.md) | Lambda、Stream、方法引用 |
-| 47 | [类加载与SPI](Java基础/47-类加载与SPI.md) | 双亲委派、SPI 机制 |
-| 48 | [JUnit单元测试](Java基础/48-JUnit单元测试.md) | JUnit5、断言 |
-| 49 | [JVM进阶](Java基础/49-JVM进阶.md) | GC、调优、类文件结构 |
+| 12 | [抽象类](Java基础/12-抽象类.md) | abstract 规范、模板方法、选型 |
+| 13 | [多态](Java基础/13-多态.md) | 向上/向下转型、动态绑定 |
+| 14 | [接口](Java基础/14-接口.md) | 接口定义、默认方法 |
+| 15 | [内部类](Java基础/15-内部类.md) | 成员/局部/匿名内部类 |
+| 16 | [权限修饰符与包](Java基础/16-权限修饰符与包.md) | public/protected/默认/private |
+| 17 | [枚举enum](Java基础/17-枚举enum.md) | 枚举定义与使用 |
+| 18 | [Object类与Objects](Java基础/18-Object类与Objects.md) | toString/equals/hashCode |
+| 19 | [字符串String与StringBuilder](Java基础/19-字符串String与StringBuilder.md) | 字符串不可变、拼接优化 |
+| 20 | [包装类](Java基础/20-包装类.md) | 自动装箱拆箱、缓存 |
+| 21 | [数学运算：Math与BigDecimal](Java基础/21-数学运算：Math与BigDecimal.md) | 精确运算 |
+| 22 | [日期时间](Java基础/22-日期时间.md) | Date/Calendar/新时间 API |
+| 23 | [System与Runtime类](Java基础/23-System与Runtime类.md) | 系统属性、运行时 |
+| 24 | [异常处理](Java基础/24-异常处理.md) | 受检/非受检异常、try-catch |
+| 25 | [集合框架体系与Collection](Java基础/25-集合框架体系与Collection.md) | Collection 体系总览 |
+| 26 | [List：ArrayList与LinkedList](Java基础/26-List：ArrayList与LinkedList.md) | List 实现、底层原理 |
+| 27 | [Set：HashSet与TreeSet](Java基础/27-Set：HashSet与TreeSet.md) | Set 实现与排序 |
+| 28 | [Map：HashMap底层与TreeMap](Java基础/28-Map：HashMap底层与TreeMap.md) | HashMap 原理、红黑树 |
+| 29 | [迭代器与增强for](Java基础/29-迭代器与增强for.md) | Iterator、fail-fast |
+| 30 | [泛型](Java基础/30-泛型.md) | 泛型方法、通配符 |
+| 31 | [Collections工具类与排序](Java基础/31-Collections工具类与排序.md) | 工具方法、Comparator |
+| 32 | [数据结构基础](Java基础/32-数据结构基础.md) | 链表/栈/队列/树 |
+| 33 | [File类与NIO.2](Java基础/33-File类与NIO.2.md) | 文件操作、Path |
+| 34 | [字节流与字符流](Java基础/34-字节流与字符流.md) | InputStream/Reader |
+| 35 | [缓冲流与转换流](Java基础/35-缓冲流与转换流.md) | BufferedReader/InputStreamReader |
+| 36 | [序列化与打印流](Java基础/36-序列化与打印流.md) | Serializable、PrintStream |
+| 37 | [标准IO、RandomAccessFile与Properties](Java基础/37-标准IO、RandomAccessFile与Properties.md) | 随机访问、配置文件 |
+| 38 | [线程基础](Java基础/38-线程基础.md) | Thread/Runnable、生命周期 |
+| 39 | [线程同步](Java基础/39-线程同步.md) | synchronized、锁 |
+| 40 | [线程通信](Java基础/40-线程通信.md) | wait/notify、生产消费 |
+| 41 | [JUC并发包](Java基础/41-JUC并发包.md) | CAS、AQS、ConcurrentHashMap |
+| 42 | [线程池](Java基础/42-线程池.md) | ThreadPoolExecutor、参数 |
+| 43 | [ThreadLocal与异步编程](Java基础/43-ThreadLocal与异步编程.md) | 线程隔离、CompletableFuture |
+| 44 | [网络编程](Java基础/44-网络编程.md) | Socket/TCP/UDP |
+| 45 | [反射](Java基础/45-反射.md) | Class、动态代理 |
+| 46 | [注解](Java基础/46-注解.md) | 元注解、自定义注解 |
+| 47 | [函数式编程](Java基础/47-函数式编程.md) | Lambda、Stream、方法引用 |
+| 48 | [类加载与SPI](Java基础/48-类加载与SPI.md) | 双亲委派、SPI 机制 |
+| 49 | [JUnit单元测试](Java基础/49-JUnit单元测试.md) | JUnit5、断言 |
+| 50 | [JVM进阶](Java基础/50-JVM进阶.md) | GC、调优、类文件结构 |
 
 ### 二、Java Web（21 篇）
 
@@ -348,14 +349,13 @@
 | :--- | :--- |
 | [macrozheng/mall](https://github.com/macrozheng/mall) | 最火的 Spring Boot 电商项目（50k+ star）。完整商城系统，含 Spring Boot + Spring Cloud + MyBatis + Redis + RabbitMQ + ES + Docker，企业级架构集大成者 |
 | [macrozheng/mall-learning](https://github.com/macrozheng/mall-learning) | mall 的配套学习版，拆解 mall 各模块的实现原理，适合跟着学 |
-| [macrozheng/springboot-learning-example](https://github.com/macrozheng/springboot-learning-example) | macrozheng 的 Spring Boot 基础示例集，和 spring-boot-demo 定位类似 |
+| [macrozheng/spring-examples](https://github.com/macrozheng/spring-examples) | macrozheng 的 Spring Boot 技术文章配套示例集，和 spring-boot-demo 定位类似 |
 
 ### 示例集型（和 spring-boot-demo 类似）
 
 | 项目 | 说明 |
 | :--- | :--- |
 | [ityouknow/spring-boot-examples](https://github.com/ityouknow/spring-boot-examples) | Spring Boot 各特性独立示例，每个 example 一个知识点，风格接近 spring-boot-demo |
-| [elunez/springboot-example](https://github.com/elunez/springboot-example) | Spring Boot + MyBatis + Shiro 实战示例 |
 | [wuyouzhuguli/SpringAll](https://github.com/wuyouzhuguli/SpringAll) | Spring 全家桶教程，从 Spring 到 Spring Boot 到 Spring Cloud |
 
 ### 源码与原理型
@@ -363,7 +363,6 @@
 | 项目 | 说明 |
 | :--- | :--- |
 | [doocs/source-code-hunter](https://github.com/doocs/source-code-hunter) | Java 主流框架源码分析，含 Spring/Spring Boot/MyBatis，适合"知其所以然" |
-| [farmer-hutao/spring-boot-starter-kit](https://github.com/farmer-hutao/spring-boot-starter-kit) | Spring Boot 进阶，讲 Starter 自动配置原理 |
 
 ### 最佳实践型
 
